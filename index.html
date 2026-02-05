@@ -25,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* Fundo Inclinado Estilo Stripe */
+        /* Hero Background Estilo Stripe */
         .hero-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 550px;
@@ -56,7 +56,7 @@
             max-width: 800px;
         }
 
-        /* GRID DE CARDS (Menus do Centro) */
+        /* GRID DE CARDS - TODOS OS 5 MENUS DO CENTRO */
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -157,25 +157,41 @@
         <a href="ciencia-de-dados/" class="card">
             <div class="card-header">
                 <span>📊</span>
-                <h3>Data Science</h3>
+                <h3>Ciência de Dados</h3>
             </div>
-            <p>Análise avançada e modelos preditivos para o seu negócio.</p>
+            <p>Modelagem preditiva e inteligência de dados para decisões estratégicas.</p>
         </a>
 
         <a href="banco-de-dados/" class="card">
             <div class="card-header">
                 <span>🗄️</span>
-                <h3>Databases</h3>
+                <h3>Banco de Dados</h3>
             </div>
-            <p>Administração de bancos de dados SQL e NoSQL com alta performance.</p>
+            <p>Alta disponibilidade, performance e arquiteturas escaláveis.</p>
         </a>
 
         <a href="redes/" class="card">
             <div class="card-header">
                 <span>🌐</span>
-                <h3>Redes & Cloud</h3>
+                <h3>Redes</h3>
             </div>
-            <p>Infraestrutura escalável e redes seguras de última geração.</p>
+            <p>Conectividade robusta e gestão de tráfego de alta performance.</p>
+        </a>
+
+        <a href="seguranca/" class="card">
+            <div class="card-header">
+                <span>🛡️</span>
+                <h3>Segurança</h3>
+            </div>
+            <p>Proteção de ativos críticos e conformidade total com a LGPD.</p>
+        </a>
+
+        <a href="backup/" class="card">
+            <div class="card-header">
+                <span>💾</span>
+                <h3>Backup & Restore</h3>
+            </div>
+            <p>Estratégias de continuidade para que seu negócio nunca pare.</p>
         </a>
     </main>
 
@@ -192,22 +208,18 @@
     </div>
 
     <script>
-        // Função para carregar componentes externos
+        // Função para carregar componentes externos (Navbar e Footer)
         function loadComponent(id, path) {
             fetch(path)
-                .then(res => {
-                    if (!res.ok) throw new Error(`Erro ao carregar ${path}`);
-                    return res.text();
-                })
+                .then(res => res.text())
                 .then(data => document.getElementById(id).innerHTML = data)
-                .catch(err => console.error(err));
+                .catch(err => console.error("Erro ao carregar:", path));
         }
 
-        // Chamada do carregamento
         loadComponent('navbar-placeholder', 'navbar.html');
         loadComponent('footer-placeholder', 'footer.html');
 
-        // Funções de controle do Login (Acionadas pela Navbar)
+        // Funções do Login (Acionadas pela Navbar)
         function openLogin() { document.getElementById('loginModal').style.display = 'block'; }
         function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
 
