@@ -8,36 +8,30 @@
     <style>
         :root {
             --primary: #00d4ff;
-            --secondary: #0052d4;
             --dark: #0a192f;
-            --text: #ffffff;
+            --text-main: #adbac7;
+            --text-bright: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
-            --nav-bg: rgba(10, 25, 47, 0.8);
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--dark);
-            color: var(--text);
+            color: var(--text-bright);
             margin: 0;
-            overflow-x: hidden;
-            line-height: 1.6;
+            padding-top: 70px;
         }
 
-        /* Menu Superior Estilo Stripe */
+        /* --- NAVBAR ESTILO STRIPE --- */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             height: 70px;
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: transparent;
             display: flex;
-            align-items: center;
             justify-content: center;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 2000;
         }
 
         .nav-container {
@@ -49,88 +43,111 @@
             padding: 0 20px;
         }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.4rem;
-            color: var(--text);
-            text-decoration: none;
-            letter-spacing: -1px;
-        }
-
+        .logo { font-weight: 800; font-size: 1.5rem; color: white; text-decoration: none; }
         .logo span { color: var(--primary); }
 
-        .nav-links {
+        /* Links Centrais */
+        .nav-main-links { display: flex; gap: 30px; height: 100%; align-items: center; }
+        
+        .menu-item { position: relative; height: 100%; display: flex; align-items: center; cursor: pointer; }
+        .menu-item > a { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            font-weight: 500; 
+            opacity: 0.8; 
+            transition: 0.3s;
+        }
+        .menu-item:hover > a { opacity: 1; }
+
+        /* --- O MEGA MENU (DROPDOWN) --- */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            width: 750px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 50px 100px -20px rgba(50,50,93,0.25);
+            display: none; /* Escondido por padrão */
+            padding: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            z-index: 3000;
+        }
+
+        /* Mostra o menu ao passar o mouse */
+        .menu-item:hover .dropdown { display: grid; }
+
+        /* Colunas do Menu */
+        .dropdown-column h4 {
+            color: #8898aa;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #f6f9fc;
+            padding-bottom: 10px;
+        }
+
+        .dropdown-link {
             display: flex;
-            gap: 25px;
-        }
-
-        .nav-links a {
-            color: white;
+            gap: 15px;
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            opacity: 0.7;
-            transition: 0.3s;
+            margin-bottom: 25px;
+            transition: 0.2s;
         }
 
-        .nav-links a:hover {
-            opacity: 1;
-            color: var(--primary);
-        }
+        .dropdown-link:hover { transform: translateX(5px); }
 
-        .btn-contact {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+        .dropdown-link .icon { font-size: 1.4rem; }
+        
+        .dropdown-link div span {
+            display: block;
+            color: #32325d;
             font-weight: 600;
-            color: white !important;
-            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.95rem;
+        }
+
+        .dropdown-link div p {
+            margin: 5px 0 0;
+            color: #6b7c93;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* Botões à Direita */
+        .nav-right { display: flex; gap: 15px; align-items: center; }
+        .btn-cta { 
+            background: var(--primary); 
+            color: var(--dark); 
+            padding: 10px 20px; 
+            border-radius: 20px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            font-size: 0.85rem;
             transition: 0.3s;
         }
+        .btn-cta:hover { transform: scale(1.05); background: white; }
 
-        .btn-contact:hover {
-            background: white !important;
-            color: var(--dark) !important;
-        }
-
-        /* Fundo Animado */
+        /* --- CONTEÚDO HERO --- */
         .hero-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 550px;
+            top: 0; left: 0; width: 100%; height: 550px;
             background: linear-gradient(150deg, #0052d4 15%, #65999e 70%, #00d4ff 94%);
             transform: skewY(-6deg);
             transform-origin: top left;
             z-index: -1;
         }
 
-        header {
-            max-width: 1100px;
-            margin: 160px auto 60px;
-            padding: 0 20px;
-            text-align: left;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: -2px;
-            line-height: 1.1;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            opacity: 0.9;
-            max-width: 650px;
-        }
+        header { max-width: 1100px; margin: 120px auto 60px; padding: 0 20px; }
+        h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; }
+        .subtitle { font-size: 1.4rem; opacity: 0.9; max-width: 700px; }
 
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             max-width: 1100px;
             margin: 0 auto 100px;
@@ -145,40 +162,11 @@
             border-radius: 12px;
             text-decoration: none;
             color: white;
-            transition: all 0.3s ease;
+            transition: 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin: 0 0 10px 0;
-            color: var(--primary);
-        }
-
-        .card p {
-            font-size: 1rem;
-            opacity: 0.7;
-            margin: 0;
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            opacity: 0.6;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Esconde menu no mobile para simplificar */
-        }
+        .card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.1); }
+        .card h3 { color: var(--primary); margin: 0 0 10px; }
     </style>
 </head>
 <body>
@@ -186,54 +174,79 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">DeltaX<span>.</span></a>
-            <div class="nav-links">
-                <a href="ciencia-de-dados/">Data Science</a>
-                <a href="banco-de-dados/">Bancos</a>
-                <a href="redes/">Infra & Redes</a>
-                <a href="seguranca/">CyberSec</a>
-                <a href="backup/">Resiliência</a>
+            
+            <div class="nav-main-links">
+                <div class="menu-item">
+                    <a href="#">Soluções ▾</a>
+                    <div class="dropdown">
+                        <div class="dropdown-column">
+                            <h4>Inteligência de Dados</h4>
+                            <a href="ciencia-de-dados/" class="dropdown-link">
+                                <span class="icon">📊</span>
+                                <div>
+                                    <span>Ciência de Dados</span>
+                                    <p>Modelos preditivos e análise estatística.</p>
+                                </div>
+                            </a>
+                            <a href="banco-de-dados/" class="dropdown-link">
+                                <span class="icon">🗄️</span>
+                                <div>
+                                    <span>Arquitetura de Dados</span>
+                                    <p>Estrutura SQL/NoSQL de alta performance.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="dropdown-column">
+                            <h4>Infraestrutura & Segurança</h4>
+                            <a href="redes/" class="dropdown-link">
+                                <span class="icon">🌐</span>
+                                <div>
+                                    <span>Redes & Conectividade</span>
+                                    <p>Gestão de tráfego e infraestrutura crítica.</p>
+                                </div>
+                            </a>
+                            <a href="seguranca/" class="dropdown-link">
+                                <span class="icon">🛡️</span>
+                                <div>
+                                    <span>CyberSegurança</span>
+                                    <p>Proteção de ativos e conformidade LGPD.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item"><a href="backup/">Resiliência</a></div>
+                <div class="menu-item"><a href="#">Sobre</a></div>
             </div>
-            <a href="mailto:contato@dsdeltax.com.br" class="btn-contact" style="text-decoration:none">Fale Conosco</a>
+
+            <div class="nav-right">
+                <a href="mailto:contato@dsdeltax.com.br" class="btn-cta">Fale com Especialista</a>
+            </div>
         </div>
     </nav>
 
     <div class="hero-bg"></div>
 
     <header>
-        <h1>Infraestrutura de Dados<br>para o Futuro.</h1>
-        <p class="subtitle">Soluções profissionais por <strong>Helio Ramos Machado</strong>. Especialista em dados, redes e segurança.</p>
+        <h1>Infraestrutura Digital<br>de Alta Performance</h1>
+        <p class="subtitle">Soluções completas em dados, segurança e redes desenvolvidas por <strong>Helio Ramos Machado</strong>.</p>
     </header>
 
     <div class="container">
         <a href="ciencia-de-dados/" class="card">
-            <h3>📊 Ciência de Dados</h3>
-            <p>Modelagem preditiva e análise estatística para decisões inteligentes.</p>
+            <h3>Ciência de Dados</h3>
+            <p>Análise profunda para decisões inteligentes.</p>
         </a>
-        
-        <a href="banco-de-dados/" class="card">
-            <h3>🗄️ Banco de Dados</h3>
-            <p>Alta disponibilidade, performance e arquiteturas escaláveis.</p>
-        </a>
-
-        <a href="redes/" class="card">
-            <h3>🌐 Redes</h3>
-            <p>Conectividade robusta e gestão de tráfego de alta performance.</p>
-        </a>
-
         <a href="seguranca/" class="card">
-            <h3>🛡️ Segurança</h3>
-            <p>Proteção de ativos críticos e conformidade total com a LGPD.</p>
+            <h3>Segurança</h3>
+            <p>Blindagem digital e gestão de riscos.</p>
         </a>
-
-        <a href="backup/" class="card">
-            <h3>💾 Backup & Restore</h3>
-            <p>Estratégias de continuidade para que seu negócio nunca pare.</p>
+        <a href="redes/" class="card">
+            <h3>Redes</h3>
+            <p>Conectividade estável e escalável.</p>
         </a>
     </div>
-
-    <footer>
-        © 2024 DeltaX Data Lab • Helio Ramos Machado • dsdeltax.com.br
-    </footer>
 
 </body>
 </html>
