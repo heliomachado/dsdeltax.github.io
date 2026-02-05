@@ -15,7 +15,6 @@
             --nav-bg: rgba(10, 25, 47, 0.9);
         }
 
-        /* Estrutura Base */
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--dark);
@@ -24,16 +23,12 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* Navbar */
+        /* --- NAVBAR --- */
         .navbar {
             position: fixed;
-            top: 0;
-            width: 100%;
-            height: 70px;
+            top: 0; width: 100%; height: 70px;
             background: var(--nav-bg);
             backdrop-filter: blur(12px);
             display: flex;
@@ -44,171 +39,96 @@
         }
 
         .nav-container {
-            width: 100%;
-            max-width: 1100px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
+            width: 100%; max-width: 1100px;
+            display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
         }
 
-        .logo { font-weight: 800; font-size: 1.4rem; color: var(--text); text-decoration: none; letter-spacing: -1px; }
+        .logo { font-weight: 800; font-size: 1.4rem; color: var(--text); text-decoration: none; }
         .logo span { color: var(--primary); }
 
-        .nav-links { display: flex; gap: 25px; align-items: center; }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: 0.3s;
-            opacity: 0.8;
-        }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; opacity: 0.7; transition: 0.3s; }
         .nav-links a:hover { opacity: 1; color: var(--primary); }
 
-        /* Menu Soluções (Dropdown Corrigido) */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropbtn { cursor: pointer; display: flex; align-items: center; gap: 5px; }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #0d1b2a;
-            min-width: 220px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            padding: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 1100;
-        }
-
-        .dropdown:hover .dropdown-content { display: block; }
-
-        .dropdown-content a {
-            display: block !important;
-            padding: 12px !important;
-            opacity: 1 !important;
-            color: white !important;
-            font-size: 0.85rem !important;
-            border-radius: 5px;
-        }
-
-        .dropdown-content a:hover { background: rgba(0, 212, 255, 0.15); color: var(--primary) !important; }
-
-        /* Botões */
-        .btn-group { display: flex; gap: 12px; }
-        .btn-contact {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 18px;
-            border-radius: 20px;
-            color: white;
-            border: 1px solid rgba(255,255,255,0.2);
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: 0.3s;
-        }
-        .btn-contact:hover { background: white; color: var(--dark); }
-        .btn-login { background: var(--primary); color: var(--dark); border: none; }
-
-        /* Hero Section */
+        /* --- HERO --- */
         .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 550px;
-            background: linear-gradient(150deg, #0052d4 15%, #65999e 70%, #00d4ff 94%);
-            transform: skewY(-6deg);
-            transform-origin: top left;
-            z-index: -1;
+            position: absolute; top: 0; width: 100%; height: 500px;
+            background: linear-gradient(150deg, #0052d4 15%, #00d4ff 94%);
+            transform: skewY(-6deg); transform-origin: top left; z-index: -1;
         }
 
-        header { max-width: 1100px; margin: 160px auto 60px; padding: 0 20px; }
-        h1 { 
-            font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; 
-            line-height: 1.1; letter-spacing: -2px;
-            background: linear-gradient(90deg, #fff, var(--primary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .subtitle { font-size: 1.4rem; opacity: 0.9; max-width: 600px; }
+        header { max-width: 1100px; margin: 160px auto 40px; padding: 0 20px; }
+        h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; line-height: 1.1; }
+        .subtitle { font-size: 1.4rem; opacity: 0.9; max-width: 650px; }
 
-        /* Grid de Cards */
+        /* --- GRID CENTRAL (MENUS) --- */
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             max-width: 1100px;
-            margin: 0 auto 80px;
+            margin: 40px auto 100px;
             padding: 0 20px;
         }
 
         .card {
             background: var(--glass);
             backdrop-filter: blur(10px);
-            padding: 35px;
+            padding: 40px;
             border-radius: 12px;
             text-decoration: none;
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
+            transition: 0.4s;
         }
-        .card:hover { transform: translateY(-10px); border-color: var(--primary); background: rgba(255, 255, 255, 0.08); }
 
-        /* Rodapé */
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .card h3 { margin: 0 0 15px 0; color: var(--primary); }
+        .card p { margin: 0; opacity: 0.8; }
+
+        /* --- RODAPÉ --- */
         footer {
             background: #060e1a;
-            padding: 50px 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
-            margin-top: auto;
-        }
-        .footer-info { opacity: 0.6; font-size: 0.85rem; }
-
-        /* Modais */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(10, 25, 47, 0.9);
-            backdrop-filter: blur(8px);
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: auto; /* Garante que o rodapé fique no fim */
         }
 
-        .modal-content {
-            background: white;
-            margin: 8% auto;
-            padding: 30px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 380px;
-            color: #32325d;
-            position: relative;
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
         }
 
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #8898aa; }
-        
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; }
-        .form-group input { width: 100%; padding: 12px; border: 1px solid #e6ebf1; border-radius: 6px; box-sizing: border-box; }
-
-        .btn-submit {
-            background: var(--secondary);
-            color: white; width: 100%; padding: 12px;
-            border: none; border-radius: 6px; font-weight: 700;
-            cursor: pointer; transition: 0.3s;
+        .footer-section h4 { 
+            color: var(--primary); 
+            text-transform: uppercase; 
+            font-size: 0.8rem; 
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
-        .btn-submit:hover { background: var(--primary); color: var(--dark); }
-        #loginError { color: #ff4d4d; font-size: 0.8rem; text-align: center; display: none; margin-top: 10px; }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
+        .footer-section p { 
+            margin: 10px 0; 
+            font-size: 0.9rem; 
+            opacity: 0.6; 
+            cursor: pointer;
         }
+        .footer-section p:hover { opacity: 1; }
+
+        /* --- BOTÕES E MODAIS --- */
+        .btn-contact { background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 20px; color: white; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; font-weight: 600; }
+        .btn-login { background: var(--primary); color: var(--dark); border: none; margin-left: 10px; }
+
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+        .modal-content { background: white; margin: 10% auto; padding: 40px; border-radius: 16px; width: 90%; max-width: 350px; color: #333; position: relative; }
     </style>
 </head>
 <body>
@@ -217,20 +137,14 @@
         <div class="nav-container">
             <a href="#" class="logo">DsDeltaX<span>.</span></a>
             <div class="nav-links">
-                <div class="dropdown">
-                    <a class="dropbtn">Soluções ▼</a>
-                    <div class="dropdown-content">
-                        <a href="ciencia-de-dados/">📊 Ciência de Dados</a>
-                        <a href="banco-de-dados/">🗄️ Banco de Dados</a>
-                        <a href="redes/">🌐 Infra & Redes</a>
-                        <a href="seguranca/">🛡️ CyberSec</a>
-                    </div>
-                </div>
-                <a href="#projetos">Portfolio</a>
+                <a href="ciencia-de-dados/">Ciência de Dados</a>
+                <a href="banco-de-dados/">Bancos</a>
+                <a href="redes/">Infra & Redes</a>
+                <a href="seguranca/">Cyber Security</a>
             </div>
-            <div class="btn-group">
-                <button onclick="openForm()" class="btn-contact">Fale Conosco</button>
-                <button onclick="openLogin()" class="btn-contact btn-login">Login</button>
+            <div>
+                <button class="btn-contact">Contato</button>
+                <button onclick="document.getElementById('loginModal').style.display='block'" class="btn-contact btn-login">Login</button>
             </div>
         </div>
     </nav>
@@ -245,4 +159,71 @@
     <div class="container">
         <a href="ciencia-de-dados/" class="card">
             <h3>📊 Ciência de Dados</h3>
-            <p>Modelagem preditiva e inteligência de dados para decisões estratégicas.</p
+            <p>Modelagem preditiva e análise de dados para decisões inteligentes.</p>
+        </a>
+        <a href="banco-de-dados/" class="card">
+            <h3>🗄️ Banco de Dados</h3>
+            <p>Alta disponibilidade, performance e arquiteturas escaláveis.</p>
+        </a>
+        <a href="redes/" class="card">
+            <h3>🌐 Infra & Redes</h3>
+            <p>Gestão de tráfego e infraestrutura de alta performance.</p>
+        </a>
+        <a href="seguranca/" class="card">
+            <h3>🛡️ Segurança</h3>
+            <p>Proteção de ativos críticos e conformidade total com a LGPD.</p>
+        </a>
+        <a href="backup/" class="card">
+            <h3>💾 Backup & Restore</h3>
+            <p>Estratégias de continuidade para que sua operação nunca pare.</p>
+        </a>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Laboratório</h4>
+                <p>Página Inicial</p>
+                <p>Sobre o Lab</p>
+                <p>Projetos de Dados</p>
+            </div>
+            <div class="footer-section">
+                <h4>Especialidades</h4>
+                <h4>Data Science</h4>
+                <p>Database Design</p>
+                <p>Cyber Security</p>
+            </div>
+            <div class="footer-section">
+                <h4>Conecte-se</h4>
+                <p>LinkedIn</p>
+                <p>GitHub</p>
+                <p>E-mail Profissional</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 50px; opacity: 0.4; font-size: 0.8rem;">
+            &copy; 2026 DsDeltaX Data Lab. Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h3 style="text-align:center; margin-top:0">Acesso Restrito</h3>
+            <input type="email" id="email" placeholder="E-mail" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px;">
+            <input type="password" id="pass" placeholder="Senha" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px;">
+            <button onclick="login()" style="width:100%; padding:12px; background:var(--secondary); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">Entrar</button>
+            <button onclick="document.getElementById('loginModal').style.display='none'" style="width:100%; background:none; border:none; color:#999; margin-top:10px; cursor:pointer;">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const e = document.getElementById('email').value;
+            const p = document.getElementById('pass').value;
+            if(e === "admin@dsdeltax.com.br" && p === "delta2026") {
+                sessionStorage.setItem("logado", "true");
+                window.location.href = "dashboard.html";
+            } else { alert("Dados incorretos."); }
+        }
+    </script>
+</body>
+</html>
