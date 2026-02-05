@@ -1,7 +1,7 @@
 <style>
     .navbar {
         position: fixed; top: 0; width: 100%; height: 70px;
-        background: rgba(10, 25, 47, 0.85); /* Mais transparente para o blur brilhar */
+        background: rgba(10, 25, 47, 0.85);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         display: flex; align-items: center; justify-content: center;
@@ -24,15 +24,15 @@
     }
     .nav-link-item:hover { opacity: 1; color: #00d4ff; }
 
-    /* DROPDOWN COM ANIMAÇÃO STRIPE */
+    /* DROPDOWN */
     .dropdown { position: relative; padding: 25px 0; }
     
     .mega-menu {
-        display: block; /* Mantemos block para a animação de opacidade funcionar */
+        display: block; 
         visibility: hidden;
         opacity: 0;
         position: absolute; 
-        top: 80px; /* Um pouco mais abaixo para o efeito de subida */
+        top: 80px; 
         background: white; 
         width: 300px; 
         padding: 24px; 
@@ -41,10 +41,9 @@
         z-index: 1100;
         transform: translateY(10px);
         transition: all 0.25s ease;
-        pointer-events: none; /* Evita que o mouse interaja enquanto escondido */
+        pointer-events: none;
     }
 
-    /* Triângulo indicador (Pointer) */
     .mega-menu::before {
         content: "";
         position: absolute;
@@ -54,8 +53,6 @@
         transform: rotate(45deg);
         border-radius: 2px 0 0 0;
     }
-
-    #menu-solucoes::before { left: 50px; } /* Ajuste do triângulo no segundo menu */
 
     .dropdown:hover .mega-menu { 
         visibility: visible;
@@ -68,47 +65,68 @@
     #menu-produtos { left: -20px; }
     #menu-solucoes { left: -40px; }
 
+    /* --- NOVOS AJUSTES PEDIDOS --- */
+
+    /* Sublinhado no Título */
     .mega-col h4 { 
+        display: inline-block;
         font-size: 0.75rem; 
         text-transform: uppercase; 
         color: #8898aa; 
         margin-bottom: 16px; 
         letter-spacing: 0.5px;
-        border-bottom: 1px solid #f6f9fc; 
-        padding-bottom: 6px; 
+        position: relative;
     }
 
-    .mega-item { 
-        display: block; 
-        text-decoration: none; 
-        margin-bottom: 15px; 
-        padding: 8px;
-        border-radius: 8px;
-        transition: 0.2s; 
+    .mega-col h4::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 1.5px;
+        background: #00d4ff;
+        transition: width 0.3s ease;
     }
+
+    .dropdown:hover h4::after { width: 100%; }
+
+    /* Seta Dinâmica nos itens específicos */
+    .mega-item strong { 
+        display: flex; 
+        align-items: center; 
+        font-size: 0.9rem; 
+        color: #6772e5; 
+        margin-bottom: 2px;
+        transition: 0.2s;
+    }
+
+    /* Definindo a seta apenas para itens que queremos */
+    .with-arrow strong::after {
+        content: '→';
+        opacity: 0;
+        margin-left: 6px;
+        transform: translateX(-10px);
+        transition: all 0.2s ease;
+        display: inline-block;
+    }
+
+    .with-arrow:hover strong::after {
+        opacity: 1;
+        transform: translateX(0);
+        color: #00d4ff;
+    }
+
+    .mega-item:hover strong { color: #00d4ff; }
     .mega-item:hover { background: #f6f9fc; transform: translateX(4px); }
     
-    .mega-item strong { display: block; font-size: 0.9rem; color: #6772e5; margin-bottom: 2px; }
     .mega-item span { font-size: 0.85rem; color: #525f7f; line-height: 1.4; display: block; }
-
-    .sub-item {
-        margin-left: 12px;
-        border-left: 2px solid #e6f0ff;
-        padding-left: 14px;
-        margin-top: 10px;
-    }
 
     /* BOTÕES */
     .nav-actions { display: flex; align-items: center; gap: 12px; }
-    
-    .btn-nav {
-        padding: 9px 20px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; cursor: pointer;
-        transition: 0.3s;
-    }
-    
+    .btn-nav { padding: 9px 20px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: 0.3s; }
     .btn-contact { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.2); }
     .btn-contact:hover { border-color: white; background: rgba(255,255,255,0.05); }
-
     .btn-login-nav { background: #00d4ff; color: #0a192f; border: none; }
     .btn-login-nav:hover { background: white; transform: translateY(-1px); box-shadow: 0 7px 14px rgba(0,212,255,0.2); }
 </style>
@@ -123,15 +141,15 @@
                 <div class="mega-menu" id="menu-produtos">
                     <div class="mega-col">
                         <h4>Laboratório de Dados</h4>
-                        <a href="ciencia-de-dados/" class="mega-item">
+                        <a href="ciencia-de-dados/" class="mega-item with-arrow">
                             <strong>Ciência de Dados</strong>
                             <span>IA e Modelagem Preditiva</span>
                         </a>
-                        <a href="banco-de-dados/" class="mega-item">
+                        <a href="banco-de-dados/" class="mega-item with-arrow">
                             <strong>Bancos de Dados</strong>
                             <span>Performance e Escalabilidade</span>
                         </a>
-                        <a href="backup/" class="mega-item">
+                        <a href="backup/" class="mega-item with-arrow">
                             <strong>Resiliência</strong>
                             <span>Backup e Restore Seguro</span>
                         </a>
@@ -144,15 +162,10 @@
                 <div class="mega-menu" id="menu-solucoes">
                     <div class="mega-col">
                         <h4>Serviços Corporativos</h4>
-                        <div class="mega-item">
-                            <strong>Backup & Recovery</strong>
-                            <div class="sub-item">
-                                <a href="solucoes/arcserve-udp.html" class="mega-item" style="margin-bottom:0; padding:4px 8px;">
-                                    <strong>Arcserve UDP</strong>
-                                    <span>Proteção de dados unificada</span>
-                                </a>
-                            </div>
-                        </div>
+                        <a href="solucoes/arcserve-udp.html" class="mega-item">
+                            <strong>Arcserve UDP</strong>
+                            <span>Proteção de dados unificada</span>
+                        </a>
                         <a href="#" class="mega-item">
                             <strong>Consultoria</strong>
                             <span>Arquitetura de Dados</span>
