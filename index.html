@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DsDeltaX Data Lab | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #00d4ff;
-            --secondary: #0052d4;
+            --secondary: #635bff; /* Roxo clássico Stripe */
             --dark: #0a192f;
             --text: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
         }
 
         body {
@@ -19,48 +18,53 @@
             background-color: var(--dark);
             color: var(--text);
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Hero Background Estilo Stripe */
+        /* HERO BACKGROUND STRIPE-STYLE */
         .hero-bg {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 550px;
-            background: linear-gradient(150deg, #0052d4 15%, #65999e 70%, #00d4ff 94%);
-            transform: skewY(-6deg);
-            transform-origin: top left;
+            top: 0; left: 0; width: 100%; height: 750px;
+            background: linear-gradient(150deg, #0a2540 15%, #635bff 50%, #00d4ff 94%);
+            transform: skewY(-8deg);
+            transform-origin: 0;
             z-index: -1;
         }
 
         header {
             max-width: 1100px;
-            margin: 160px auto 60px;
+            margin: 180px auto 80px;
             padding: 0 20px;
+            text-align: left;
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.05;
             margin: 0;
-            letter-spacing: -2px;
+            letter-spacing: -1.5px;
+            background: linear-gradient(to right, #fff, #adbdcc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            opacity: 0.9;
-            margin-top: 20px;
-            max-width: 800px;
+            font-size: 1.25rem;
+            color: #adbdcc;
+            margin-top: 25px;
+            max-width: 650px;
+            line-height: 1.6;
         }
+
+        .subtitle strong { color: var(--primary); font-weight: 600; }
 
         /* GRID DE CARDS */
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
             max-width: 1100px;
             margin: 0 auto 100px;
             padding: 0 20px;
@@ -68,83 +72,89 @@
 
         .card {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 35px;
-            border-radius: 15px;
+            padding: 40px;
+            border-radius: 12px;
             text-decoration: none;
             color: white;
-            transition: 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.45);
         }
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
         }
 
         .card h3 {
             margin: 0;
-            font-size: 1.3rem;
-            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
         }
 
         .card p {
             margin: 0;
-            opacity: 0.7;
+            color: #adbdcc;
             font-size: 1rem;
             line-height: 1.5;
         }
 
-        /* Modais */
+        /* MODAIS REFINADOS */
         .modal {
             display: none;
             position: fixed;
             z-index: 2000;
             left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
+            background: rgba(10, 37, 64, 0.85);
+            backdrop-filter: blur(8px);
         }
 
         .modal-content {
-            background: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 400px;
-            color: #333;
+            background: #fff;
+            margin: 8% auto;
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 420px;
+            color: #424770;
+            box-shadow: 0 50px 100px -20px rgba(50,50,93,0.25);
             position: relative;
         }
 
-        .modal-content input, .modal-content textarea, .modal-content select {
-            width: 100%; padding: 12px; margin: 10px 0;
-            border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;
-            font-family: inherit;
-        }
+        .modal-content h2 { color: #32325d; margin-bottom: 25px; }
 
-        .close-btn {
-            position: absolute; right: 20px; top: 10px;
-            font-size: 24px; cursor: pointer; color: #999;
+        .modal-content input, .modal-content textarea, .modal-content select {
+            width: 100%; padding: 14px; margin-bottom: 15px;
+            border: 1px solid #e6ebf1; border-radius: 6px; box-sizing: border-box;
+            background: #f6f9fc; font-size: 1rem;
         }
 
         .btn-auth {
-            width: 100%; padding: 12px; background: var(--secondary);
-            color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;
+            width: 100%; padding: 14px; background: var(--secondary);
+            color: white; border: none; border-radius: 6px; 
+            font-weight: 700; cursor: pointer; font-size: 1rem;
+            transition: 0.2s;
+        }
+        .btn-auth:hover { background: #5551ff; transform: translateY(-1px); }
+
+        .close-btn {
+            position: absolute; right: 25px; top: 20px;
+            font-size: 30px; cursor: pointer; color: #adbdcc;
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.8rem; }
-            header { margin-top: 120px; }
+            .hero-bg { height: 600px; transform: skewY(-10deg); }
+            header { margin-top: 130px; }
         }
     </style>
 </head>
@@ -155,49 +165,39 @@
     <div class="hero-bg"></div>
 
     <header>
-        <h1>Infraestrutura de Dados<br>para o Futuro.</h1>
-        <p class="subtitle">Soluções profissionais por <strong>Helio Ramos Machado</strong>.</p>
+        <h1>Infraestrutura de dados<br>para o crescimento global.</h1>
+        <p class="subtitle">Soluções profissionais em ciência de dados e engenharia de resiliência por <strong>Helio Ramos Machado</strong>.</p>
     </header>
 
     <main class="container">
         <a href="ciencia-de-dados/" class="card">
-            <div class="card-header">
-                <span>📊</span>
-                <h3>Ciência de Dados</h3>
-            </div>
-            <p>Modelagem preditiva e inteligência de dados para decisões estratégicas.</p>
+            <div class="card-icon">📊</div>
+            <h3>Ciência de Dados</h3>
+            <p>Modelagem preditiva e inteligência de dados para decisões estratégicas e automação.</p>
         </a>
 
         <a href="banco-de-dados/" class="card">
-            <div class="card-header">
-                <span>🗄️</span>
-                <h3>Banco de Dados</h3>
-            </div>
-            <p>Alta disponibilidade, performance e arquiteturas escaláveis.</p>
+            <div class="card-icon">🗄️</div>
+            <h3>Banco de Dados</h3>
+            <p>Gestão de alta performance, tunning de queries e arquiteturas escaláveis em cloud.</p>
         </a>
 
         <a href="redes/" class="card">
-            <div class="card-header">
-                <span>🌐</span>
-                <h3>Redes</h3>
-            </div>
-            <p>Conectividade robusta e gestão de tráfego de alta performance.</p>
+            <div class="card-icon">🌐</div>
+            <h3>Redes e Infra</h3>
+            <p>Arquiteturas robustas de conectividade e gestão de tráfego de missão crítica.</p>
         </a>
 
         <a href="seguranca/" class="card">
-            <div class="card-header">
-                <span>🛡️</span>
-                <h3>Segurança</h3>
-            </div>
-            <p>Proteção de ativos críticos e conformidade total com a LGPD.</p>
+            <div class="card-icon">🛡️</div>
+            <h3>Segurança (LGPD)</h3>
+            <p>Proteção de ativos digitais críticos e conformidade total com normas de privacidade.</p>
         </a>
 
         <a href="backup/" class="card">
-            <div class="card-header">
-                <span>💾</span>
-                <h3>Backup & Restore</h3>
-            </div>
-            <p>Estratégias de continuidade para que seu negócio nunca pare.</p>
+            <div class="card-icon">💾</div>
+            <h3>Backup & Arcserve</h3>
+            <p>Estratégias de continuidade de negócios e recuperação de desastres com Arcserve UDP.</p>
         </a>
     </main>
 
@@ -206,51 +206,52 @@
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeLogin()">&times;</span>
-            <h2 style="margin-top:0; text-align: center;">Login Lab</h2>
-            <input type="email" id="email" placeholder="E-mail">
+            <h2 style="text-align: center;">Acesse o Laboratório</h2>
+            <input type="email" id="email" placeholder="E-mail profissional">
             <input type="password" id="pass" placeholder="Senha">
-            <button onclick="login()" class="btn-auth">Entrar</button>
+            <button onclick="login()" class="btn-auth">Entrar na plataforma</button>
         </div>
     </div>
 
     <div id="formModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeForm()">&times;</span>
-            <h2 style="margin-top:0; text-align: center; color: var(--secondary);">Fale Conosco</h2>
-            <form id="contactForm" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso!'); closeForm();">
-                <input type="text" placeholder="Nome completo" required>
-                <input type="email" placeholder="E-mail profissional" required>
+            <h2 style="text-align: center;">Fale Conosco</h2>
+            <form id="contactForm" onsubmit="event.preventDefault(); alert('Solicitação enviada! Entraremos em contato em breve.'); closeForm();">
+                <input type="text" placeholder="Nome" required>
+                <input type="email" placeholder="E-mail corporativo" required>
                 <select required>
-                    <option value="">Selecione o interesse</option>
-                    <option value="data">Ciência de Dados</option>
-                    <option value="db">Banco de Dados</option>
-                    <option value="backup">Backup & Arcserve</option>
+                    <option value="">Área de interesse</option>
+                    <option value="data">Data Science</option>
+                    <option value="db">Engenharia de Dados</option>
+                    <option value="backup">Backup & Resiliência</option>
                 </select>
-                <textarea placeholder="Como podemos ajudar?" rows="4" required></textarea>
-                <button type="submit" class="btn-auth">Enviar Solicitação</button>
+                <textarea placeholder="Descreva brevemente o projeto..." rows="4" required></textarea>
+                <button type="submit" class="btn-auth">Enviar mensagem</button>
             </form>
         </div>
     </div>
 
     <script>
+        // Função de carregamento mantida
         function loadComponent(id, path) {
             fetch(path)
                 .then(res => res.text())
-                .then(data => document.getElementById(id).innerHTML = data)
-                .catch(err => console.error("Erro ao carregar:", path));
+                .then(data => {
+                    document.getElementById(id).innerHTML = data;
+                })
+                .catch(err => console.error("Erro:", path));
         }
 
         loadComponent('navbar-placeholder', 'navbar.html');
         loadComponent('footer-placeholder', 'footer.html');
 
-        // Controles de Modal
+        // Controles de Modal mantidos
         function openLogin() { document.getElementById('loginModal').style.display = 'block'; }
         function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
-        
         function openForm() { document.getElementById('formModal').style.display = 'block'; }
         function closeForm() { document.getElementById('formModal').style.display = 'none'; }
 
-        // Fechar ao clicar fora
         window.onclick = function(event) {
             if (event.target.className === 'modal') {
                 closeLogin();
