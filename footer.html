@@ -1,0 +1,114 @@
+<style>
+    .custom-footer {
+        background: #050c16;
+        padding: 80px 20px 40px;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        margin-top: 100px;
+        color: #adbac7;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .footer-container {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 60px;
+    }
+
+    .footer-col h4 {
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .footer-col a {
+        display: block;
+        color: #adbac7;
+        text-decoration: none;
+        margin-bottom: 12px;
+        font-size: 0.85rem;
+        transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+        color: #00d4ff; /* Cor primária DeltaX */
+    }
+
+    .footer-bottom {
+        border-top: 1px solid rgba(255,255,255,0.05);
+        padding-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        font-size: 0.75rem;
+        line-height: 1.6;
+    }
+
+    .copyright-line {
+        font-weight: 500;
+        color: #6b7c93;
+    }
+
+    .legal-links {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .legal-links a {
+        color: #6b7c93;
+        text-decoration: none;
+    }
+
+    .legal-links a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<footer class="custom-footer">
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Laboratório</h4>
+                <a href="/index.html">Página Inicial</a>
+                <a href="#">Sobre a DeltaX</a>
+                <a href="#">Projetos de Dados</a>
+            </div>
+            <div class="footer-col">
+                <h4>Especialidades</h4>
+                <a href="/ciencia-de-dados/">Data Science</a>
+                <a href="/banco-de-dados/">Database Design</a>
+                <a href="/seguranca/">Cyber Security</a>
+                <a href="/redes/">Infraestrutura</a>
+            </div>
+            <div class="footer-col">
+                <h4>Conecte-se</h4>
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="mailto:contato@dsdeltax.com.br">E-mail Profissional</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright-line">
+                © Copyright 2024-2026 DeltaX Data Lab • Helio Ramos Machado • Todos os direitos reservados.
+            </div>
+            <div class="legal-links">
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Cookies</a>
+            </div>
+            <div style="color: #4a5568;">
+                dsdeltax.com.br • Rio de Janeiro, Brasil
+            </div>
+        </div>
+    </div>
+</footer>
