@@ -6,6 +6,8 @@
         margin-top: 100px;
         color: #adbac7;
         font-family: 'Inter', sans-serif;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .footer-container {
@@ -13,6 +15,7 @@
         margin: 0 auto;
     }
 
+    /* Grid de links superior */
     .footer-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -39,40 +42,55 @@
     }
 
     .footer-col a:hover {
-        color: #00d4ff; /* Cor primária DeltaX */
+        color: #00d4ff;
     }
 
+    /* Seção de Copyright Centralizada (Estilo Globo/Stripe) */
     .footer-bottom {
         border-top: 1px solid rgba(255,255,255,0.05);
         padding-top: 30px;
         display: flex;
         flex-direction: column;
-        align-items: center; /* Centraliza horizontalmente */
-        text-align: center;    /* Centraliza o texto nas linhas */
+        align-items: center;    /* Centraliza os blocos flex */
+        justify-content: center;
+        text-align: center;      /* Centraliza o texto interno */
         gap: 15px;
         font-size: 0.75rem;
         line-height: 1.6;
+        width: 100%;
     }
 
     .copyright-line {
         font-weight: 500;
         color: #6b7c93;
+        width: 100%;
     }
 
-   .legal-links {
+    .legal-links {
         display: flex;
-        justify-content: center; /* Centraliza os links de Termos/Privacidade */
+        justify-content: center; /* Centraliza horizontalmente os links */
         gap: 20px;
         flex-wrap: wrap;
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
 
     .legal-links a {
         color: #6b7c93;
         text-decoration: none;
+        transition: color 0.3s;
     }
 
     .legal-links a:hover {
         text-decoration: underline;
+        color: white;
+    }
+
+    .footer-address {
+        color: #4a5568;
+        width: 100%;
     }
 </style>
 
@@ -104,12 +122,12 @@
             <div class="copyright-line">
                 © Copyright 2024-2026 DeltaX Data Lab • Helio Ramos Machado • Todos os direitos reservados.
             </div>
-            <div class="legal-links">
+            <nav class="legal-links">
                 <a href="#">Termos de Uso</a>
                 <a href="#">Política de Privacidade</a>
                 <a href="#">Cookies</a>
-            </div>
-            <div style="color: #4a5568;">
+            </nav>
+            <div class="footer-address">
                 dsdeltax.com.br • Rio de Janeiro, Brasil
             </div>
         </div>
