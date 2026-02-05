@@ -56,7 +56,7 @@
             max-width: 800px;
         }
 
-        /* GRID DE CARDS - TODOS OS 5 MENUS DO CENTRO */
+        /* GRID DE CARDS */
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -106,7 +106,7 @@
             line-height: 1.5;
         }
 
-        /* Modal de Login */
+        /* Modais */
         .modal {
             display: none;
             position: fixed;
@@ -118,17 +118,23 @@
 
         .modal-content {
             background: white;
-            margin: 10% auto;
+            margin: 5% auto;
             padding: 30px;
             border-radius: 12px;
-            max-width: 350px;
+            max-width: 400px;
             color: #333;
-            text-align: center;
+            position: relative;
         }
 
-        .modal-content input {
+        .modal-content input, .modal-content textarea, .modal-content select {
             width: 100%; padding: 12px; margin: 10px 0;
             border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .close-btn {
+            position: absolute; right: 20px; top: 10px;
+            font-size: 24px; cursor: pointer; color: #999;
         }
 
         .btn-auth {
@@ -199,16 +205,34 @@
 
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <h2 style="margin-top:0">Login Lab</h2>
+            <span class="close-btn" onclick="closeLogin()">&times;</span>
+            <h2 style="margin-top:0; text-align: center;">Login Lab</h2>
             <input type="email" id="email" placeholder="E-mail">
             <input type="password" id="pass" placeholder="Senha">
             <button onclick="login()" class="btn-auth">Entrar</button>
-            <button onclick="closeLogin()" style="background:none; border:none; color:gray; cursor:pointer; margin-top:15px;">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeForm()">&times;</span>
+            <h2 style="margin-top:0; text-align: center; color: var(--secondary);">Fale Conosco</h2>
+            <form id="contactForm" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso!'); closeForm();">
+                <input type="text" placeholder="Nome completo" required>
+                <input type="email" placeholder="E-mail profissional" required>
+                <select required>
+                    <option value="">Selecione o interesse</option>
+                    <option value="data">Ciência de Dados</option>
+                    <option value="db">Banco de Dados</option>
+                    <option value="backup">Backup & Arcserve</option>
+                </select>
+                <textarea placeholder="Como podemos ajudar?" rows="4" required></textarea>
+                <button type="submit" class="btn-auth">Enviar Solicitação</button>
+            </form>
         </div>
     </div>
 
     <script>
-        // Função para carregar componentes externos (Navbar e Footer)
         function loadComponent(id, path) {
             fetch(path)
                 .then(res => res.text())
@@ -219,9 +243,20 @@
         loadComponent('navbar-placeholder', 'navbar.html');
         loadComponent('footer-placeholder', 'footer.html');
 
-        // Funções do Login (Acionadas pela Navbar)
+        // Controles de Modal
         function openLogin() { document.getElementById('loginModal').style.display = 'block'; }
         function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
+        
+        function openForm() { document.getElementById('formModal').style.display = 'block'; }
+        function closeForm() { document.getElementById('formModal').style.display = 'none'; }
+
+        // Fechar ao clicar fora
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                closeLogin();
+                closeForm();
+            }
+        }
 
         function login() {
             const e = document.getElementById('email').value;
