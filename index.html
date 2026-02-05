@@ -164,3 +164,174 @@
             color: #32325d;
             position: relative;
             box-shadow: 0 50px 100px -20px rgba(50,50,93,0.25);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 24px; cursor: pointer; color: #8898aa;
+        }
+
+        .modal-content h2 { margin-top: 0; color: var(--dark); text-align: center; }
+
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: #32325d; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px; border: 1px solid #e6ebf1;
+            border-radius: 6px; box-sizing: border-box; font-family: inherit;
+        }
+
+        .btn-submit {
+            background: var(--secondary);
+            color: white; width: 100%; padding: 12px;
+            border: none; border-radius: 6px; font-weight: 700;
+            cursor: pointer; transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover { background: var(--primary); color: var(--dark); }
+
+        #loginError { color: #ff4d4d; font-size: 0.8rem; text-align: center; margin-top: 10px; display: none; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">DsDeltaX<span>.</span></a>
+            <div class="nav-links">
+                <a href="ciencia-de-dados/">Data Science</a>
+                <a href="banco-de-dados/">Bancos</a>
+                <a href="redes/">Infra & Redes</a>
+                <a href="seguranca/">CyberSec</a>
+                <a href="backup/">Resiliência</a>
+            </div>
+            <div class="btn-group">
+                <button onclick="openForm()" class="btn-contact">Fale Conosco</button>
+                <button onclick="openLogin()" class="btn-contact btn-login">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-bg"></div>
+
+    <header>
+        <h1>Infraestrutura de Dados<br>para o Futuro.</h1>
+        <p class="subtitle">Soluções profissionais por <strong>Helio Ramos Machado</strong>. Especialista em dados, redes e segurança.</p>
+    </header>
+
+    <div class="container">
+        <a href="ciencia-de-dados/" class="card">
+            <h3>📊 Ciência de Dados</h3>
+            <p>Modelagem preditiva e análise estatística para decisões inteligentes.</p>
+        </a>
+        <a href="banco-de-dados/" class="card">
+            <h3>🗄️ Banco de Dados</h3>
+            <p>Alta disponibilidade, performance e arquiteturas escaláveis.</p>
+        </a>
+        <a href="redes/" class="card">
+            <h3>🌐 Redes</h3>
+            <p>Conectividade robusta e gestão de tráfego de alta performance.</p>
+        </a>
+        <a href="seguranca/" class="card">
+            <h3>🛡️ Segurança</h3>
+            <p>Proteção de ativos críticos e conformidade total com a LGPD.</p>
+        </a>
+        <a href="backup/" class="card">
+            <h3>💾 Backup & Restore</h3>
+            <p>Estratégias de continuidade para que seu negócio nunca pare.</p>
+        </a>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeForm()">&times;</span>
+            <h2>Fale Conosco</h2>
+            <form action="https://formspree.io/f/mdalnkwe" method="POST">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" name="name" required placeholder="Seu nome">
+                </div>
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" name="email" required placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Mensagem</label>
+                    <textarea name="message" rows="4" required placeholder="Como podemos ajudar?"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar E-mail</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeLogin()">&times;</span>
+            <h2>Área Privativa</h2>
+            <p style="text-align:center; font-size: 0.85rem; color: #6b7c93; margin-bottom: 20px;">Acesso restrito a pesquisadores e parceiros.</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" id="userEmail" required placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="userPass" required placeholder="••••••••">
+                </div>
+                <button type="button" onclick="validateLogin()" class="btn-submit">Acessar Laboratório</button>
+                <p id="loginError">Credenciais inválidas. Tente novamente.</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Carregamento do Footer
+        fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            const el = document.getElementById('footer-placeholder');
+            if (el) el.innerHTML = data;
+        }).catch(err => console.log("Footer não encontrado."));
+
+        // Funções do Modal
+        function openForm() { document.getElementById("contactModal").style.display = "block"; }
+        function closeForm() { document.getElementById("contactModal").style.display = "none"; }
+        function openLogin() { document.getElementById("loginModal").style.display = "block"; }
+        function closeLogin() { 
+            document.getElementById("loginModal").style.display = "none";
+            document.getElementById("loginError").style.display = "none";
+        }
+
+        // VALIDAÇÃO DO LOGIN
+        function validateLogin() {
+            const email = document.getElementById("userEmail").value.trim();
+            const pass = document.getElementById("userPass").value.trim();
+            const error = document.getElementById("loginError");
+
+            // Credenciais Exatas
+            if(email === "admin@dsdeltax.com.br" && pass === "delta2026") {
+                // Importante: cria a chave que o dashboard.html vai procurar
+                sessionStorage.setItem("logado", "true"); 
+                window.location.href = "dashboard.html"; 
+            } else {
+                error.style.display = "block";
+            }
+        }
+
+        // Fechar se clicar fora do modal
+        window.onclick = function(event) {
+            if (event.target.className === "modal") {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
