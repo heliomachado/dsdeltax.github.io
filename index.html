@@ -22,13 +22,14 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Fundo inclinado estilo Stripe */
+        /* Fundo Inclinado Estilo Stripe */
         .hero-bg {
             position: absolute;
-            top: 0; width: 100%; height: 500px;
-            background: linear-gradient(150deg, #0052d4 15%, #00d4ff 94%);
+            top: 0; left: 0; width: 100%; height: 550px;
+            background: linear-gradient(150deg, #0052d4 15%, #65999e 70%, #00d4ff 94%);
             transform: skewY(-6deg);
             transform-origin: top left;
             z-index: -1;
@@ -36,42 +37,74 @@
 
         header {
             max-width: 1100px;
-            margin: 160px auto 40px;
+            margin: 160px auto 60px;
             padding: 0 20px;
         }
 
-        h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin: 0; }
-        .subtitle { font-size: 1.3rem; opacity: 0.9; margin-top: 20px; }
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0;
+            letter-spacing: -2px;
+        }
 
-        /* Container dos Cards Centrais */
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-top: 20px;
+            max-width: 800px;
+        }
+
+        /* GRID DE CARDS (Menus do Centro) */
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             max-width: 1100px;
-            margin: 40px auto 100px;
+            margin: 0 auto 100px;
             padding: 0 20px;
         }
 
         .card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 35px;
             border-radius: 15px;
             text-decoration: none;
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
+            transition: 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .card h3 { color: var(--primary); margin-top: 0; }
-        .card p { opacity: 0.7; font-size: 0.95rem; line-height: 1.5; }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .card p {
+            margin: 0;
+            opacity: 0.7;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
 
         /* Modal de Login */
         .modal {
@@ -80,7 +113,7 @@
             z-index: 2000;
             left: 0; top: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
@@ -88,17 +121,30 @@
             margin: 10% auto;
             padding: 30px;
             border-radius: 12px;
-            max-width: 320px;
+            max-width: 350px;
             color: #333;
+            text-align: center;
         }
 
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        .btn-login-submit { width: 100%; padding: 10px; background: var(--secondary); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .modal-content input {
+            width: 100%; padding: 12px; margin: 10px 0;
+            border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;
+        }
+
+        .btn-auth {
+            width: 100%; padding: 12px; background: var(--secondary);
+            color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            header { margin-top: 120px; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="nav-placeholder"></div>
+    <div id="navbar-placeholder"></div>
 
     <div class="hero-bg"></div>
 
@@ -108,16 +154,27 @@
     </header>
 
     <main class="container">
-        <a href="#" class="card">
-            <h3>📊 Data Science</h3>
+        <a href="ciencia-de-dados/" class="card">
+            <div class="card-header">
+                <span>📊</span>
+                <h3>Data Science</h3>
+            </div>
             <p>Análise avançada e modelos preditivos para o seu negócio.</p>
         </a>
-        <a href="#" class="card">
-            <h3>🗄️ Databases</h3>
+
+        <a href="banco-de-dados/" class="card">
+            <div class="card-header">
+                <span>🗄️</span>
+                <h3>Databases</h3>
+            </div>
             <p>Administração de bancos de dados SQL e NoSQL com alta performance.</p>
         </a>
-        <a href="#" class="card">
-            <h3>🌐 Redes & Cloud</h3>
+
+        <a href="redes/" class="card">
+            <div class="card-header">
+                <span>🌐</span>
+                <h3>Redes & Cloud</h3>
+            </div>
             <p>Infraestrutura escalável e redes seguras de última geração.</p>
         </a>
     </main>
@@ -129,28 +186,36 @@
             <h2 style="margin-top:0">Login Lab</h2>
             <input type="email" id="email" placeholder="E-mail">
             <input type="password" id="pass" placeholder="Senha">
-            <button onclick="login()" class="btn-login-submit">Entrar</button>
-            <button onclick="document.getElementById('loginModal').style.display='none'" style="background:none; border:none; color:gray; cursor:pointer; width:100%; margin-top:10px">Fechar</button>
+            <button onclick="login()" class="btn-auth">Entrar</button>
+            <button onclick="closeLogin()" style="background:none; border:none; color:gray; cursor:pointer; margin-top:15px;">Cancelar</button>
         </div>
     </div>
 
     <script>
-        // SCRIPT PARA CARREGAR A NAVBAR
-        fetch('navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
-            });
-
-        // Função de abrir login (precisa estar no index porque o modal está aqui)
-        function openLogin() {
-            document.getElementById('loginModal').style.display = 'block';
+        // Função para carregar componentes externos
+        function loadComponent(id, path) {
+            fetch(path)
+                .then(res => {
+                    if (!res.ok) throw new Error(`Erro ao carregar ${path}`);
+                    return res.text();
+                })
+                .then(data => document.getElementById(id).innerHTML = data)
+                .catch(err => console.error(err));
         }
+
+        // Chamada do carregamento
+        loadComponent('navbar-placeholder', 'navbar.html');
+        loadComponent('footer-placeholder', 'footer.html');
+
+        // Funções de controle do Login (Acionadas pela Navbar)
+        function openLogin() { document.getElementById('loginModal').style.display = 'block'; }
+        function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
 
         function login() {
             const e = document.getElementById('email').value;
             const p = document.getElementById('pass').value;
             if(e === "admin@dsdeltax.com.br" && p === "delta2026") {
+                sessionStorage.setItem("logado", "true");
                 window.location.href = "dashboard.html";
             } else { alert("Acesso negado!"); }
         }
