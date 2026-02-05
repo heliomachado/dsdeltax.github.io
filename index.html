@@ -58,7 +58,7 @@
 
         .logo span { color: var(--primary); }
 
-        .nav-links { display: flex; gap: 25px; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
 
         .nav-links a {
             color: white;
@@ -71,7 +71,8 @@
 
         .nav-links a:hover { opacity: 1; color: var(--primary); }
 
-        /* Botão Fale Conosco */
+        .btn-group { display: flex; gap: 10px; }
+
         .btn-contact {
             background: rgba(255, 255, 255, 0.1);
             padding: 8px 18px;
@@ -87,6 +88,13 @@
         .btn-contact:hover {
             background: white !important;
             color: var(--dark) !important;
+        }
+
+        /* Botão de Login com destaque */
+        .btn-login {
+            background: var(--primary);
+            color: var(--dark) !important;
+            border: none;
         }
 
         /* Hero & Content */
@@ -137,7 +145,7 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* --- ESTILOS DO FORMULÁRIO (MODAL) --- */
+        /* --- ESTILOS DOS MODAIS (CONTATO E LOGIN) --- */
         .modal {
             display: none;
             position: fixed;
@@ -153,7 +161,7 @@
             padding: 30px;
             border-radius: 16px;
             width: 90%;
-            max-width: 450px;
+            max-width: 400px;
             color: #32325d;
             position: relative;
             box-shadow: 0 50px 100px -20px rgba(50,50,93,0.25);
@@ -165,12 +173,12 @@
             font-size: 24px; cursor: pointer; color: #8898aa;
         }
 
-        .modal-content h2 { margin-top: 0; color: var(--dark); }
+        .modal-content h2 { margin-top: 0; color: var(--dark); text-align: center; }
 
         .form-group { margin-bottom: 15px; text-align: left; }
         .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; }
         .form-group input, .form-group textarea {
-            width: 100%; padding: 10px; border: 1px solid #e6ebf1;
+            width: 100%; padding: 12px; border: 1px solid #e6ebf1;
             border-radius: 6px; box-sizing: border-box; font-family: inherit;
         }
 
@@ -179,9 +187,12 @@
             color: white; width: 100%; padding: 12px;
             border: none; border-radius: 6px; font-weight: 700;
             cursor: pointer; transition: 0.3s;
+            margin-top: 10px;
         }
 
-        .btn-submit:hover { background: var(--primary); }
+        .btn-submit:hover { background: var(--primary); color: var(--dark); }
+
+        #loginError { color: #ff4d4d; font-size: 0.8rem; text-align: center; margin-top: 10px; display: none; }
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
@@ -201,7 +212,10 @@
                 <a href="seguranca/">CyberSec</a>
                 <a href="backup/">Resiliência</a>
             </div>
-            <button onclick="openForm()" class="btn-contact">Fale Conosco</button>
+            <div class="btn-group">
+                <button onclick="openForm()" class="btn-contact">Fale Conosco</button>
+                <button onclick="openLogin()" class="btn-contact btn-login">Login</button>
+            </div>
         </div>
     </nav>
 
@@ -239,8 +253,6 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeForm()">&times;</span>
             <h2>Fale Conosco</h2>
-            <p style="font-size: 0.9rem; color: #6b7c93;">Envie sua mensagem para a DeltaX Data Lab.</p>
-            
             <form action="https://formspree.io/f/mdalnkwe" method="POST">
                 <div class="form-group">
                     <label>Nome</label>
@@ -259,6 +271,26 @@
         </div>
     </div>
 
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeLogin()">&times;</span>
+            <h2>Área Privativa</h2>
+            <p style="text-align:center; font-size: 0.85rem; color: #6b7c93; margin-bottom: 20px;">Acesso restrito a pesquisadores e parceiros.</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" id="userEmail" required placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="userPass" required placeholder="••••••••">
+                </div>
+                <button type="button" onclick="validateLogin()" class="btn-submit">Acessar Laboratório</button>
+                <p id="loginError">Credenciais inválidas. Tente novamente.</p>
+            </form>
+        </div>
+    </div>
+
     <div id="footer-placeholder"></div>
 
     <script>
@@ -269,16 +301,37 @@
             document.getElementById('footer-placeholder').innerHTML = data;
         });
 
-        // Funções do Formulário
+        // Controles do Modal de Contato
         function openForm() { document.getElementById("contactModal").style.display = "block"; }
         function closeForm() { document.getElementById("contactModal").style.display = "none"; }
+
+        // Controles do Modal de Login
+        function openLogin() { document.getElementById("loginModal").style.display = "block"; }
+        function closeLogin() { 
+            document.getElementById("loginModal").style.display = "none";
+            document.getElementById("loginError").style.display = "none";
+        }
         
-        // Fechar se clicar fora da caixa branca
+        // Lógica de Validação Simples (Temporária para GitHub Pages)
+        function validateLogin() {
+            const email = document.getElementById("userEmail").value;
+            const pass = document.getElementById("userPass").value;
+            const error = document.getElementById("loginError");
+
+            // Substitua pelos dados que você quiser usar para teste
+            if(email === "admin@dsdeltax.com.br" && pass === "delta2026") {
+                window.location.href = "dashboard.html"; // Crie este arquivo na sua pasta principal
+            } else {
+                error.style.display = "block";
+            }
+        }
+
+        // Fechar se clicar fora
         window.onclick = function(event) {
-            let modal = document.getElementById("contactModal");
-            if (event.target == modal) { modal.style.display = "none"; }
+            if (event.target.className === "modal") {
+                event.target.style.display = "none";
+            }
         }
     </script>
-
 </body>
 </html>
