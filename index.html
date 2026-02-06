@@ -1,112 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DsDeltaX Data Lab</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
-<style>
-:root {
-    --primary: #00d4ff;
-    --dark: #0a192f;
-}
-
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: var(--dark);
-    color: white;
-    overflow-x: hidden;
-}
-
-.hero-bg {
-    position: absolute;
-    width: 100%;
-    height: 500px;
-    background: linear-gradient(150deg, #0052d4, #00d4ff);
-    transform: skewY(-6deg);
-    transform-origin: top left;
-    z-index: -1;
-}
-
-header {
-    max-width: 1100px;
-    margin: 160px auto 60px;
-    padding: 0 20px;
-}
-
-h1 {
-    font-size: 4rem;
-    margin: 0;
-}
-
-.subtitle {
-    font-size: 1.4rem;
-    margin-top: 20px;
-    opacity: 0.9;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto 100px;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-}
-
-.card {
-    background: rgba(255,255,255,0.05);
-    padding: 30px;
-    border-radius: 15px;
-    text-decoration: none;
-    color: white;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    border: 1px solid var(--primary);
-}
-
-@media (max-width: 768px) {
-    h1 { font-size: 2.4rem; }
-    .subtitle { font-size: 1.1rem; }
-    header { margin-top: 120px; }
-    .hero-bg { height: 420px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <title>DSDeltaX | Tecnologia</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-
 <body>
 
-<div id="navbar-placeholder"></div>
-<div class="hero-bg"></div>
+  <!-- NAVBAR -->
+  <?php include 'navbar.html'; ?>
 
-<header>
-    <h1>Infraestrutura de Dados<br>para o Futuro</h1>
-    <p class="subtitle">Soluções profissionais por Helio Ramos Machado</p>
-</header>
+  <main class="container">
+    <h1>Bem-vindo</h1>
+    <p>
+      Portfólio profissional em Tecnologia, Dados, Segurança,
+      Redes e Banco de Dados.
+    </p>
+  </main>
 
-<main class="container">
-    <a href="ciencia-de-dados/" class="card">📊 Ciência de Dados</a>
-    <a href="banco-de-dados/" class="card">🗄️ Banco de Dados</a>
-    <a href="redes/" class="card">🌐 Redes</a>
-    <a href="seguranca/" class="card">🛡️ Segurança</a>
-    <a href="backup/" class="card">💾 Backup</a>
-</main>
-
-<div id="footer-placeholder"></div>
-
-<script>
-function load(id, file) {
-    fetch(file).then(r => r.text()).then(t => document.getElementById(id).innerHTML = t);
-}
-load("navbar-placeholder", "navbar.html");
-load("footer-placeholder", "footer.html");
-</script>
+  <!-- FOOTER -->
+  <?php include 'footer.html'; ?>
 
 </body>
 </html>
