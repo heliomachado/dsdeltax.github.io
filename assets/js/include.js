@@ -1,7 +1,11 @@
 fetch("/navbar.html")
-  .then(res => res.text())
-  .then(data => document.getElementById("navbar").innerHTML = data);
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById("navbar").innerHTML = html;
+  });
 
 fetch("/footer.html")
-  .then(res => res.text())
-  .then(data => document.getElementById("footer").innerHTML = data);
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
+  });
